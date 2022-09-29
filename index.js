@@ -4,8 +4,43 @@ require("dotenv").config();
 const app = express();
 const PORT = 3001;
 
-const { SF_LOGIN_URL, SF_USERNAME, SF_PASSWORD, SF_TOKEN } = process.env;
-const conn = new jsforce.Connection({
+const {
+  SF_LOGIN_URL,
+  SF_USERNAME,
+  SF_PASSWORD,
+  SF_TOKEN,
+  REDIRECT_URL,
+  CLIENT_SECRET,
+  CLIENT_ID,
+} = process.env;
+
+//Username and Password Login (OAuth2 Resource Owner Password Credential)
+
+var conn = new jsforce.Connection({
+  oauth2: {
+    loginUrl: SF_LOGIN_URL,
+    clientId: CLIENT_ID,
+    clientSecret: CLIENT_SECRET,
+    redirectUri: REDIRECT_URL,
+  },
+});
+conn.login(SF_USERNAME, SF_PASSWORD + SF_TOKEN, (err, userInfo) => {
+  if (err) {
+    return console.error(err);
+  }
+  // Now you can get the access token and instance URL information.
+  // Save them to establish connection next time.
+  console.log(conn.accessToken);
+  console.log(conn.instanceUrl);
+  // logged in user property
+  console.log("User ID: " + userInfo.id);
+  console.log("Org ID: " + userInfo.organizationId);
+  // ...
+});
+
+//Username and Password Login
+
+/* const conn = new jsforce.Connection({
   loginUrl: SF_LOGIN_URL,
 });
 conn.login(SF_USERNAME, SF_PASSWORD + SF_TOKEN, (err, userInfo) => {
@@ -15,7 +50,7 @@ conn.login(SF_USERNAME, SF_PASSWORD + SF_TOKEN, (err, userInfo) => {
     console.log("User ID:" + userInfo.id);
     console.log("Org ID:" + userInfo.organizationId);
   }
-});
+}); */
 
 app.get("/", (req, res) => {
   conn.query("SELECT Id, Name From Account", (err, result) => {
