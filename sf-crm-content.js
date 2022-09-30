@@ -28,7 +28,7 @@ async function getContentList(type) {
         headers: meta,
       })
         .then((res) => res.json())
-        .then((json) => console.log(json))
+        //.then((json) => console.log(json))
         .then((json) => resolve(json))
         .catch((err) => {
           console.log({ err });
@@ -37,4 +37,4 @@ async function getContentList(type) {
     });
   });
 }
-getContentList("Promotion");
+getContentList("");

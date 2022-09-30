@@ -7,6 +7,7 @@ const url = "/services/data/v54.0/connect/cms/delivery/channels";
 
 module.exports = async function () {
   const channels = await getChannelsList();
+
   return channels.channels;
 };
 
@@ -33,4 +34,3 @@ async function getChannelsList() {
     });
   });
 }
-getChannelsList();
