@@ -18,7 +18,7 @@ async function getContentList(type) {
   return new Promise((resolve, reject) => {
     auth().then((token) => {
       config().then((channels) => {
-        return channels.filter((channel) => {
+        channels.filter((channel) => {
           if (channel.channelName === channelName) {
             const meta = {
               "Content-Type": "application/json",
