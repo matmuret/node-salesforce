@@ -1,31 +1,31 @@
-const auth = require("./sf-crm-auth");
+const auth = require("./sf-auth");
 
 const fetch = require("node-fetch");
 
-const config = require("./sf-crm-config");
+const findCommunities = require("./sf-communities");
 
-module.exports = async function (type) {
-  if (type) {
-    const content = await getContentList(type);
+module.exports = async function (searchTerm) {
+  if (searchTerm) {
+    const content = await searchContent(searchTerm);
 
     return content;
   }
 };
-const channelName = "CMSExample";
-getContentList("Image");
+const communityName = "CMSExample";
+searchCommunityContent("Image");
 
-async function getContentList(type) {
+async function searchCommunityContent(searchTerm) {
   return new Promise((resolve, reject) => {
     auth().then((token) => {
-      config().then((channels) => {
-        return channels.filter((channel) => {
-          if (channel.channelName === channelName) {
+      findCommunities().then((communities) => {
+        communities.filter((community) => {
+          if (community.name === communityName) {
             const meta = {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token.access_token}`,
             };
 
-            const urlToUse = `${token.instance_url}/services/data/v54.0/connect/cms/delivery/channels/${channel.channelId}/contents/query?managedContentType=${type}&pageSize=250`;
+            const urlToUse = `${token.instance_url}/services/data/v54.0/connect/communities/${community.id}/managed-content/delivery/contents/search?queryTerm=${searchTerm}`;
             console.log(urlToUse);
             fetch(urlToUse, {
               method: "GET",

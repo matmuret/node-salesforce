@@ -1,4 +1,4 @@
-const auth = require("./sf-crm-auth");
+const auth = require("./sf-auth");
 
 const fetch = require("node-fetch");
 const { URLSearchParams } = require("url");
@@ -6,9 +6,9 @@ const { URLSearchParams } = require("url");
 const url = "/services/data/v54.0/connect/communities";
 
 module.exports = async function () {
-  const channels = await getCommunitiesList();
-
-  return channels.channels;
+  const communities = await getCommunitiesList();
+  console.log("communities?", communities);
+  return communities.communities;
 };
 
 async function getCommunitiesList() {
@@ -25,7 +25,7 @@ async function getCommunitiesList() {
         headers: meta,
       })
         .then((res) => res.json())
-        .then((json) => console.log(json))
+        //.then((json) => console.log(json))
         .then((json) => resolve(json))
         .catch((err) => {
           console.log({ err });
