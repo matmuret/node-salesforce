@@ -5,7 +5,7 @@ const fetch = require("node-fetch");
 const findChannels = require("./sf-channels");
 
 const channelName = "CMSExample";
-searchContent("Image");
+searchContent("Document");
 
 module.exports = async function (searchTerm) {
   if (searchTerm) {
@@ -33,7 +33,7 @@ async function searchContent(searchTerm) {
               headers: meta,
             })
               .then((res) => res.json())
-              //.then((json) => console.log(json))
+              .then((json) => console.log(json))
               .then((json) => resolve(json))
               .catch((err) => {
                 console.log({ err });

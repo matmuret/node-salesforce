@@ -12,7 +12,7 @@ module.exports = async function (type) {
   }
 };
 const channelName = "CMSExample";
-getContentList("Image");
+getContentList("cms_image");
 
 async function getContentList(type) {
   return new Promise((resolve, reject) => {

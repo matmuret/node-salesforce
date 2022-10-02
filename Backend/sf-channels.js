@@ -7,7 +7,7 @@ const url = "/services/data/v54.0/connect/cms/delivery/channels";
 
 module.exports = async function () {
   const channels = await getChannelsList();
-  console.log("channels?", channels);
+  //console.log("channels?", channels);
   return channels.channels;
 };
 
