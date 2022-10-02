@@ -14,6 +14,12 @@ module.exports = async function (type) {
 const channelName = "CMSExample";
 getContentList("cms_image");
 
+/* we could set “cms_image” content type isSearchable to false 
+so that we don’t return“cms_image” content when end users do a search
+/services/data/v49.0//connect/cms/channels/[channelId]/searchable-content-types”
+In the request body, copy paste:
+{ "name":"cms_image", "isSearchable":"false"} */
+
 async function getContentList(type) {
   return new Promise((resolve, reject) => {
     auth().then((token) => {
