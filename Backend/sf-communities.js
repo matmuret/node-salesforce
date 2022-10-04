@@ -7,7 +7,7 @@ const url = "/services/data/v54.0/connect/communities";
 
 module.exports = async function () {
   const communities = await getCommunitiesList();
-  console.log("communities?", communities);
+  //console.log("communities?", communities);
   return communities.communities;
 };
 

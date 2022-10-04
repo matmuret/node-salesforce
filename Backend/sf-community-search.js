@@ -12,7 +12,7 @@ module.exports = async function (searchTerm) {
   }
 };
 const communityName = "CMSExample";
-searchCommunityContent("Image");
+searchCommunityContent("ClaasHoffman");
 
 async function searchCommunityContent(searchTerm) {
   return new Promise((resolve, reject) => {

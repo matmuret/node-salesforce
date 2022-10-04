@@ -5,7 +5,7 @@ const fetch = require("node-fetch");
 const findChannels = require("./sf-channels");
 
 const channelName = "CMSExample";
-searchContent("Document");
+searchContent("ClaasHoffman");
 
 module.exports = async function (searchTerm) {
   if (searchTerm) {
