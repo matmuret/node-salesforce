@@ -12,7 +12,7 @@ module.exports = async function (type) {
   }
 };
 const channelName = "CMSExample";
-getContentList("cms_image");
+getContentList("news");
 
 /* we could set “cms_image” content type isSearchable to false 
 so that we don’t return“cms_image” content when end users do a search
