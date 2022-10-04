@@ -19,7 +19,7 @@ async function searchContent(searchTerm) {
   return new Promise((resolve, reject) => {
     auth().then((token) => {
       findChannels().then((channels) => {
-        channels.filter((channel) => {
+        channels.map((channel) => {
           if (channel.channelName === channelName) {
             const meta = {
               "Content-Type": "application/json",
