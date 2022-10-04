@@ -32,8 +32,12 @@ async function searchCommunityContent(searchTerm) {
               headers: meta,
             })
               .then((res) => res.json())
-              .then((json) => console.log(json))
-              .then((json) => resolve(json))
+              .then((json) => {
+                json.items.map((item) => console.log(item.contentType));
+                console.log(json);
+                resolve(json);
+              })
+
               .catch((err) => {
                 console.log({ err });
                 reject(err);

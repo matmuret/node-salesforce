@@ -38,8 +38,12 @@ async function getContentList(type) {
               headers: meta,
             })
               .then((res) => res.json())
-              .then((json) => console.log(json))
-              .then((json) => resolve(json))
+              .then((json) => {
+                console.log(json);
+                json.items.map((item) => console.log(item.contentNodes));
+
+                resolve(json);
+              })
               .catch((err) => {
                 console.log({ err });
                 reject(err);
